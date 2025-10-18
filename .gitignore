@@ -1,0 +1,6 @@
+a.out
+text
+*.o
+*.a
+main.c
+lorem.txt
