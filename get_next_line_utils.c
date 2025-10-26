@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/18 09:40:20 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/10/18 09:40:20 by abouzkra         ###   ########.fr       */
+/*   Created: 2025/10/19 09:09:16 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/10/19 09:15:33 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,6 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t	i;
-	size_t	n;
-
-	if (!dst || !src)
-		return (0);
-	n = ft_strlen(src);
-	i = 0;
-	if (size > 0)
-	{
-		while (src[i] && i < size - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (n);
-}
-
 char	*ft_strdup(const char *s)
 {
 	char	*res;
@@ -54,7 +33,7 @@ char	*ft_strdup(const char *s)
 	res = (char *)malloc(len);
 	if (!res)
 		return (0);
-	ft_strlcpy(res, s, len + 1);
+	ft_memmove(res, s, len + 1);
 	return (res);
 }
 
@@ -91,8 +70,8 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	res = (char *)malloc(s1_len + s2_len + 1);
 	if (!res)
 		return (0);
-	ft_strlcpy(res, s1, s1_len + 1);
-	ft_strlcpy(res + s1_len, s2, s2_len + 1);
+	ft_memmove(res, s1, s1_len + 1);
+	ft_memmove(res + s1_len, s2, s2_len + 1);
 	res[s1_len + s2_len] = '\0';
 	return (res);
 }

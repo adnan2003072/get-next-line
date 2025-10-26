@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/19 09:10:21 by abouzkra          #+#    #+#             */
+/*   Updated: 2025/10/25 17:35:06 by abouzkra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
@@ -8,7 +20,7 @@
 # include <bsd/string.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
+#  define BUFFER_SIZE 1
 # endif
 
 typedef unsigned char	t_uchar;
@@ -22,4 +34,4 @@ char	*ft_strjoin(const char *s1, const char *s2);
 long	find_newline(char *text);
 char	*get_next_line(int fd);
 
-#endif // !GET_NEXT_LINE_H
+#endif

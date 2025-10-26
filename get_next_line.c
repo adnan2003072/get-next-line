@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 09:31:26 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/10/18 09:31:26 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/10/25 17:33:54 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,10 @@ char	*get_next_line(int fd)
 			break ;
 	}
 	nl = find_newline(leftover);
+	// printf("new line found at :%ld\n", nl);
 	line = ft_substr(leftover, 0, nl + 1);
 	ft_memmove(leftover, leftover + nl + 1, ft_strlen(leftover) - nl);
 	if (nl == -1)
 		return (NULL);
 	return (line);
 }
-// printf("\n=============================leftover:%ldbytes==================================\n", ft_strlen(leftover));
-// printf("%s", leftover);
-// printf("\n================================================================================\n");
-// printf("\n=====================================line=======================================\n");
-// printf("%p", line);
-// printf("\n================================================================================\n");
