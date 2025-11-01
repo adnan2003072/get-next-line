@@ -1,26 +1,32 @@
 NAME = libgnl.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lbsd
-SRCS = get_next_line.c get_next_line_utils.c
-OBJS = $(SRCS:.c=.o)
+MSRCS = get_next_line.c get_next_line_utils.c
+BSRCS = get_next_line_bonus.c get_next_line_utils_bonus.c
+MOBJS = $(MSRCS:.c=.o)
+BOBJS = $(BSRCS:.c=.o)
 RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rc $@ $^
-	ranlib $@
+$(NAME): $(MOBJS)
+	ar rcs $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+bonus: $(MOBJS) $(BOBJS)
+	ar rcs $(NAME) $^
+
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(MOBJS) $(BOBJS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-test: re main.c  $(NAME)
-	$(CC) main.c -lbsd -L. -lgnl && ./a.out
+test: re main.c $(NAME)
+	$(CC) main.c -lbsd -L. -lgnl
+	$(RM) $(MOBJS) $(BOBJS)
+	./a.out
