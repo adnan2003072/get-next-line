@@ -6,7 +6,7 @@
 /*   By: abouzkra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 09:31:26 by abouzkra          #+#    #+#             */
-/*   Updated: 2025/10/31 23:28:20 by abouzkra         ###   ########.fr       */
+/*   Updated: 2025/11/04 12:26:49 by abouzkra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static long long	find_newline(char *text)
 	return (-1);
 }
 
-static void	update_text(int fd, char buf[BUFFER_SIZE + 1], char **text)
+static void	update_text(int fd, char *buf, char **text)
 {
 	long long	bytes_read;
 	char		*new_text;
@@ -74,13 +74,17 @@ static char	*get_line(char **text)
 
 char	*get_next_line(int fd)
 {
-	char		buf[BUFFER_SIZE + 1];
+	char		*buf;
 	static char	*text[1024];
 	char		*line;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
+	buf = (char *)malloc(BUFFER_SIZE + 1);
+	if (!buf)
+		return (NULL);
 	update_text(fd, buf, &text[fd]);
+	free(buf);
 	if (!text[fd] || text[fd][0] == '\0')
 	{
 		if (text[fd])
